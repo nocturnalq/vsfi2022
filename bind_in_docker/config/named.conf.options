@@ -1,0 +1,23 @@
+acl "our-nets" {
+        192.168.1.13;   # ns1
+        192.168.1.0/24; # our local network
+};
+
+options {
+        directory "/var/cache/bind";
+
+        recursion yes;
+        allow-query { our-nets; };
+        allow-recursion { our-nets; };
+        
+        listen-on { any; };
+        listen-on-v6 {none; };
+
+        dnssec-validation no;
+        allow-transfer { none; };
+
+        forwarders {
+                77.88.8.8;
+                77.88.8.1;
+        };
+};

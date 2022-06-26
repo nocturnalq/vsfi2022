@@ -1,0 +1,16 @@
+$TTL    604800
+@       IN      SOA     patchka.vsfi. root.patchka.vsfi. (
+                              3         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+; name servers
+      IN      NS      ns1.patchka.vsfi.
+
+; PTR Records
+13      IN      PTR     ns1.patchka.vsfi.        ; 192.168.1.13
+13      IN      PTR     srv1.patchka.vsfi.
+13      IN      PTR     gitlab.patchka.vsfi.
+13      IN      PTR     docker-registry.patchka.vsfi.
+

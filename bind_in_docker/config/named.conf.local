@@ -1,0 +1,10 @@
+zone "patchka.vsfi" {
+    type master;
+    file "/etc/bind/zones/patchka.vsfi.db";
+    allow-transfer { none; };
+};
+
+zone "1.168.192.in-addr.arpa" {
+    type master;
+    file "/etc/bind/zones/1.168.192.in-addr.arpa.db";
+};
