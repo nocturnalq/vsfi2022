@@ -1,0 +1,7 @@
+- name: Install nginx for ubuntu os
+  import_tasks: debian.yml
+  when: ansible_facts['os_family'] | lower == 'debian'
+
+- name: Install nginx for redhat os
+  import_tasks: redhat.yml
+  when: ansible_facts['os_family'] | lower == 'redhat'
