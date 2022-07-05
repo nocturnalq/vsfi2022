@@ -1,0 +1,16 @@
+- name: Create registry directory
+  ansible.builtin.file:
+    path: ~/docker-registry/data
+    state: directory
+    mode: '0755'
+
+- name: Copy docker-compose file
+  ansible.builtin.file:
+    src: ../files/docker_compose.yml
+    dest: ~/docker-registry/
+
+- name: Deploy registry via docker-compose
+  community.docker.docker_compose:
+    project_src: ~/docker-registry/
+    build: yes
+    

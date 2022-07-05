@@ -1,7 +1,7 @@
-- name: Install docker for ubuntu family
+- name: Install registry for debian family
   import_tasks: debian.yml
   when: ansible_facts['os_family'] | lower == 'debian'
 
-- name: Install docker for redhat family
+- name: Install registry for redhat family
   import_tasks: redhat.yml
   when: ansible_facts['os_family'] | lower == 'redhat'
