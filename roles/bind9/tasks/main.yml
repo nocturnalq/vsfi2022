@@ -1,0 +1,40 @@
+- name: Mkdir for bind9
+  ansible.builtin.file:
+    path: ~/bind9
+    state: directory
+
+- name: Copy Dockerfile
+  ansible.builtin.copy:
+    src: ../files/Dockerfile
+    dest: ~/bind9/
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy bind9 zones
+  ansible.builtin.copy:
+    src: ../files/zones
+    dest: ~/bind9/
+    owner: root
+    group: root
+    mode: '0644'
+  
+- name: Copy bind9 files
+  ansible.builtin.copy:
+    src: ../files/{{ item }}
+    dest: ~/bind9/
+    owner: root
+    group: root
+    mode: 0644
+  loop:
+    - named.conf
+    - named.conf.local
+    - named.conf.options
+
+- name: Build Bind9 container
+  community.docker.docker_image:
+    name: vsfi_bind9:v1.0
+    build:
+      path: ~/bind9/Dockerfile
+      source: build
+    state: present
