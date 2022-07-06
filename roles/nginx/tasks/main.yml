@@ -1,0 +1,7 @@
+- name: Create build directory
+  file: 
+    path: /root/demo-dockerfile
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
