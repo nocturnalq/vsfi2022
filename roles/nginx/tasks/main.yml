@@ -15,4 +15,13 @@
 
 - name: Build container
   community.docker.docker_image:
-    name: vsfi_nginx
+    name: vsfi_nginx:v1.0
+    build:
+      path: /home/{{ ansible_user }}/nginx-docker
+      source: build
+    state: present
+
+- name: Run Nginx container
+  community.docker.docker_container:
+    name: nginx
+    image: vsfi_nginx:v1.0
