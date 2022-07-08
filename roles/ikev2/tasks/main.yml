@@ -26,10 +26,3 @@
     state: restarted
     name: strongswan-starter
 
-- name: Update ufw rules
-  community.general.ufw:
-    rule: allow
-    port: '{{ item }}'
-  loop:
-    - 500
-    - 4500/udp
