@@ -28,20 +28,18 @@
   loop:
     - prometheus.yml
 
-- name: Create grafana dir
-  ansible.builtin.file:
-    path: ~/grafana
-    state: directory
-    mode: '0755'
+# - name: Create grafana dir
+#   ansible.builtin.file:
+#     path: ~/grafana
+#     state: directory
+#     mode: '0755'
 
 - name: Copy files to grafana dir
   ansible.builtin.copy:
     src: ../files/{{ item }}
-    dest: ~/grafana
+    dest: ~/.
   loop:
-    - alerting
-    - plugins 
-    - config.monitoring
+    - grafana
 
 - name: Copy webservices compose
   ansible.builtin.copy:
@@ -55,6 +53,5 @@
 - name: Run docker-compose
   community.docker.docker_compose:
     project_src: ~/webservices
-    build: yes
 
 
