@@ -26,7 +26,7 @@
     src: ../files/{{ item }}
     dest: ~/monitoring
   loop:
-    - prometheus.yml.j2
+    - prometheus.yml
 
 - name: Copy webservices compose
   ansible.builtin.copy:

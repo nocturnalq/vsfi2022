@@ -52,7 +52,7 @@ services:
     image: prom/prometheus:latest
     restart: unless-stopped
     volumes:
-      - ../monitoring/prometheus.yml.j2:/etc/prometheus/prometheus.yml
+      - ../monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'

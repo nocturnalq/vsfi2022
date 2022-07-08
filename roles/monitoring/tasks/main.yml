@@ -10,7 +10,6 @@
     dest: ~/monitoring
   loop:
     - docker-compose.yml
-    - prometheus.yml.j2
 
 - name: Run docker-compose
   community.docker.docker_compose:

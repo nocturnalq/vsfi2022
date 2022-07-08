@@ -1,0 +1,6 @@
+- name: Install prometheus on server
+  hosts: server1
+  become: true
+  gather_facts: true
+  roles:
+    - monitoring
