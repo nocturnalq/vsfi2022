@@ -1,25 +1,37 @@
-- name: Mkdir for bind9
-  ansible.builtin.file:
-    path: ~/bind9
-    state: directory
+- name: Install bind9
+  ansible.builtin.apt:
+    pkg:
+      - bind9
+      - bind9utils 
+      - bind9-doc
+    state: latest
+    update_cache: true
 
-- name: Copy Dockerfile
-  copy:
-    src: /home/nocturnalq/vsfi2022/roles/bind9/files
-    dest: ~/bind9
-    owner: root
-    group: root
-    mode: '0644'
+- name: Copy named.conf
+  ansible.builtin.copy:
+    src: /home/nocturnalq/vsfi2022/roles/bind9/files/etc_bind/named.conf
+    dest: /etc/bind/named.conf
 
-- name: Build Bind9 container
-  community.docker.docker_image:
-    name: vsfi_bind9:v1.0
-    build:
-      path: /home/root/bind9/files/
-    source: build
-    state: present
+- name: Copy named.conf.options
+  ansible.builtin.copy:
+    src: /home/nocturnalq/vsfi2022/roles/bind9/files/etc_bind/named.conf.options
+    dest: /etc/bind/named.conf.options
 
-- name: Rund Bind9 container
-  community.docker.docker_container:
+- name: Copy named.conf.local
+  ansible.builtin.copy:
+    src: /home/nocturnalq/vsfi2022/roles/bind9/files/etc_bind/named.conf.local
+    dest: /etc/bind/named.conf.local
+
+- name: Copy zones
+  ansible.builtin.copy:
+    src: /home/nocturnalq/vsfi2022/roles/bind9/files/etc_bind/zones
+    dest: /etc/bind/
+
+- name: Check conf
+  ansible.builtin.shell:
+    cmd: sudo named-checkconf
+
+- name: Restart bind9
+  ansible.builtin.systemd:
+    state: restarted
     name: bind9
-    image: vsfi_bind:v1.0
