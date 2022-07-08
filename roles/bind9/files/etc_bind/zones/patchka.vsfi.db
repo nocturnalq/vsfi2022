@@ -18,3 +18,7 @@ gitlab.patchka.vsfi.		IN	A	192.168.88.34
 docker-registry.patchka.vsfi.	IN	A	192.168.88.34
 wiki.patchka.vsfi.            IN   A    192.168.88.34
 web.patchka.vsfi.             IN   A    192.168.88.34
+prometheus.patchka.vsfi.      IN   A    192.168.88.34
+grafana.patchka.vsfi.         IN   A    192.168.88.34
+server2.patchka.vsfi.         IN   A    192.168.88.34
+server1.patchka.vsfi.         IN   A    192.168.88.29

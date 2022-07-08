@@ -1,0 +1,17 @@
+- name: Create monitoring dir
+  ansible.builtin.file:
+    path: ~/monitoring
+    state: directory
+    mode: '0755'
+
+- name: Copy files
+  ansible.builtin.copy:
+    src: ../files/{{ item }}
+    dest: ~/monitoring
+  loop:
+    - docker-compose.yml
+
+- name: Run docker-compose
+  community.docker.docker_compose:
+    project_src: ~/monitoring
+

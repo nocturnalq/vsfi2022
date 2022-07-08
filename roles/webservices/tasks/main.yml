@@ -15,6 +15,19 @@
     state: directory
     mode: '0755'
 
+- name: Create monitoring dir
+  ansible.builtin.file:
+    path: ~/monitoring
+    state: directory
+    mode: '0755'
+
+- name: Copy files
+  ansible.builtin.copy:
+    src: ../files/{{ item }}
+    dest: ~/monitoring
+  loop:
+    - prometheus.yml
+
 - name: Copy webservices compose
   ansible.builtin.copy:
     src: ../files/docker-compose.yml

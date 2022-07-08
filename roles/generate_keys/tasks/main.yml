@@ -16,4 +16,6 @@
   loop:
     - web
     - wiki
+    - prometheus
+    - grafana
   

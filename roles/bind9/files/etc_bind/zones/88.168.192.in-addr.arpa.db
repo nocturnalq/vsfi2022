@@ -11,8 +11,12 @@ $TTL    604800
 ; PTR Records
 29      IN      PTR     ns1.patchka.vsfi.        ; 192.168.88.29
 29      IN      PTR     vpn.patchka.vsfi.
+29      IN      PTR     server1.patchka.vsfi.
 34      IN      PTR     gitlab.patchka.vsfi.
 34      IN      PTR     docker-registry.patchka.vsfi.
 34      IN      PTR     web.patchka.vsfi.
 34      IN      PTR     wiki.patchka.vsfi.
+34      IN      PTR     prometheus.patchka.vsfi.
+34      IN      PTR     grafana.patchka.vsfi.
+34      IN      PTR     server2.patchka.vsfi.
 
