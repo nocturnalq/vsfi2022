@@ -19,11 +19,11 @@ ENTRYPOINT ["/entrypoint.sh"]
 # RUN mkdir -p /var/log/bind && chown named:named /var/log/bind && chmod 755 /var/log/bind 
 # RUN mkdir -p /run/named && chown named:named /run/named && chmod 755 /run/named
 
-COPY ./named.conf /etc/bind/named.conf
-COPY ./named.conf.options /etc/bind/named.conf.options
-COPY ./named.conf.local /etc/bind/named.conf.local
-COPY ./zones /etc/bind/zones
+# COPY ./named.conf /etc/bind/named.conf
+# COPY ./named.conf.options /etc/bind/named.conf.options
+# COPY ./named.conf.local /etc/bind/named.conf.local
+# COPY ./zones /etc/bind/zones
 
-CMD ["named", "-c", "/etc/bind/named.conf", "-g", "-u", "named"]
+# CMD ["named", "-c", "/etc/bind/named.conf", "-g", "-u", "named"]
 
-EXPOSE 53
+# EXPOSE 53
