@@ -4,7 +4,7 @@ zone "patchka.vsfi" {
     allow-transfer { none; };
 };
 
-zone "1.168.192.in-addr.arpa" {
+zone "88.168.192.in-addr.arpa" {
     type master;
-    file "/etc/bind/zones/1.168.192.in-addr.arpa.db";
+    file "/etc/bind/zones/88.168.192.in-addr.arpa.db";
 };

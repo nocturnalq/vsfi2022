@@ -4,22 +4,22 @@
     state: directory
 
 - name: Copy Dockerfile
-  ansible.builtin.copy:
-    src: ../files/Dockerfile
-    dest: ~/bind9/
-    owner: root
-    group: root
-    mode: '0644'
+  copy:
+    src: /home/nocturnalq/vsfi2022/roles/bind9/files
+    dest: ~/bind9
+    # owner: root
+    # group: root
+    # mode: '0644'
 
-- name: Build Bind9 container
-  community.docker.docker_image:
-    name: vsfi_bind9:v1.0
-    build:
-      path: ~/bind9/Dockerfile
-      source: build
-    state: present
+# - name: Build Bind9 container
+#   community.docker.docker_image:
+#     name: vsfi_bind9:v1.0
+#     build:
+#       path: /home/root/bind9/Dockerfile
+#     source: build
+#     state: present
 
-- name: Rund Bind9 container
-  community.docker.docker_container:
-    name: bind9
-    image: vsfi_bind:v1.0
+# - name: Rund Bind9 container
+#   community.docker.docker_container:
+#     name: bind9
+#     image: vsfi_bind:v1.0

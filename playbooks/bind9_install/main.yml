@@ -1,5 +1,6 @@
 - name: Install bind9 from docker
-  hosts: servers
+  hosts: server1
   gather_facts: true
+  become: true
   roles:
     - bind9

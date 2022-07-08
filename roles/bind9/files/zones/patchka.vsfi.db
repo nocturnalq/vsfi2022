@@ -10,10 +10,10 @@ $TTL    604800
      IN      NS      ns1.patchka.vsfi.
 
 ; name servers - A records
-ns1.patchka.vsfi.			IN	A	192.168.1.13
+ns1.patchka.vsfi.			IN	A	192.168.88.29
 
 ; 192.168.1.0/24 - A records
-srv1.patchka.vsfi.			IN	A	192.168.1.13
-gitlab.patchka.vsfi.		IN	A	192.168.1.13
-docker-registry.patchka.vsfi	IN	A	192.168.1.13
+vpn.patchka.vsfi.			IN	A	192.168.88.29
+gitlab.patchka.vsfi.		IN	A	192.168.88.34
+docker-registry.patchka.vsfi	IN	A	192.168.88.34
 

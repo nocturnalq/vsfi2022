@@ -1,6 +1,6 @@
 acl "our-nets" {
-        192.168.1.13;   # ns1
-        192.168.1.0/24; # our local network
+        192.168.88.29;   # ns1
+        192.168.88.0/24; # our local network
 };
 
 options {
@@ -17,7 +17,7 @@ options {
         allow-transfer { none; };
 
         forwarders {
-                77.88.8.8;
-                77.88.8.1;
+                192.168.88.1;
+                8.8.8.8;
         };
 };
