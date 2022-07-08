@@ -28,17 +28,33 @@
   loop:
     - prometheus.yml
 
+- name: Create grafana dir
+  ansible.builtin.file:
+    path: ~/grafana
+    state: directory
+    mode: '0755'
+
+- name: Copy files to grafana dir
+  ansible.builtin.copy:
+    src: ../files/{{ item }}
+    dest: ~/grafana
+  loop:
+    - alerting
+    - plugins 
+    - config.monitoring
+
 - name: Copy webservices compose
   ansible.builtin.copy:
     src: ../files/docker-compose.yml
     dest: ~/webservices/
 
-- name: Delete webserver
-  ansible.builtin.shell:
-    cmd: ./docker-rm.sh
+# - name: Delete webserver and grafana
+#   ansible.builtin.shell:
+#     cmd: ./docker-rm.sh
 
 - name: Run docker-compose
   community.docker.docker_compose:
     project_src: ~/webservices
+    build: yes
 
 

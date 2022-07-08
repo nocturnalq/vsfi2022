@@ -63,5 +63,22 @@ services:
     ports:
       - "9090-9091:9090"
     scale: 2
+
+  grafana:
+    image: grafana/grafana
+    user: 'admin'
+    restart: always
+    environment:
+      GF_INSTALL_PLUGINS: 'grafana-clock-panel,grafana-simple-json-datasource'
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ../grafana/provisioning/:/etc/grafana/provisioning/
+    env_file:
+      - ../grafana/config.monitoring
+    ports:
+      - 3000:3000
+    depends_on:
+      - prometheus
 volumes:
   prometheus_data:
+  grafana_data:
