@@ -37,6 +37,10 @@
   loop:
     - ufw
 
+- name: Deny other ports
+  community.general.ufw:
+    default: deny
+
 - name: Restart ufw
   community.general.ufw:
     state: enabled
