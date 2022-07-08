@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  dokuwiki:
+    image: lscr.io/linuxserver/dokuwiki:latest
+    container_name: dokuwiki
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Russia/Samara
+    volumes:
+      - /path/to/appdata/config:/config
+    ports:
+      - '8081:80'
+    restart: unless-stopped

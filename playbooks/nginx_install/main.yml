@@ -1,5 +1,6 @@
 - name: Install Nginx
-  hosts: servers
+  hosts: server2 
   gather_facts: true
+  become: true
   roles:
     - nginx

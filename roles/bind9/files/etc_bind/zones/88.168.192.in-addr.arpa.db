@@ -13,4 +13,6 @@ $TTL    604800
 29      IN      PTR     vpn.patchka.vsfi.
 34      IN      PTR     gitlab.patchka.vsfi.
 34      IN      PTR     docker-registry.patchka.vsfi.
+34      IN      PTR     web.patchka.vsfi.
+34      IN      PTR     wiki.patchka.vsfi.
 

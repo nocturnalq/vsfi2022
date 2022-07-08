@@ -1,0 +1,14 @@
+- name: Mkdir wiki dir
+  ansible.builtin.file:
+    path: ~/wiki-docker
+    state: directory
+    mode: '0755'
+
+- name: Copy docker-compose
+  ansible.builtin.copy:
+    src: ../files/docker-compose.yml
+    dest: ~/wiki-docker/
+
+- name: Start docker-compose
+  community.docker.docker_compose:
+    project_src: ~/wiki-docker
