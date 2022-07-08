@@ -7,8 +7,6 @@ services:
     container_name: nginx
     ports:
       - '80:80'
-    networks:
-      - net1
 
   wiki:
     image: lscr.io/linuxserver/dokuwiki:latest
@@ -22,7 +20,3 @@ services:
       - '8080-8083:80'
     scale: 4
     restart: unless-stopped
-    networks:
-      - net1
-networks:
-  net1:
