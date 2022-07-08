@@ -1,8 +1,8 @@
-FROM nginx:1.23.0-alpine
+FROM nginx:alpine
 
-RUN rm -r /etc/nginx/conf.d/ \
-rm /etc/nginx/nginx.conf
+COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./conf.d /etc/nginx/
 
-COPY ./nginx.conf /etc/nginx/
-COPY ./conf.d/ /etc/nginx/
-COPY ./.htpasswd /etc/nginx/
+EXPOSE 80
+
+ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
