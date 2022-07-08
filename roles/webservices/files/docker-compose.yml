@@ -10,7 +10,7 @@ services:
       - /pki/private/web-key.key:/etc/ssl/certs/web-key.key:ro
       - /pki/certs/wiki-cert.cert:/etc/ssl/certs/wiki-cert.cert:ro
       - /pki/certs/web-cert.cert:/etc/ssl/certs/web-cert.cert:ro
-      - ../nginx-docker/files/.htpasswd
+      - ../nginx-docker/files/.htpasswd:/etc/nginx/.htpasswd:ro
     ports:
       - '80:80'
       - '443:443'
