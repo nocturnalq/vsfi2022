@@ -1,3 +1,15 @@
+- name: Copy key from 29 machine
+  ansible.posix.synchronize:
+    src: /etc/ipsec.d/private/{{ item }}-key.pem
+    dest: /pki/private/{{ item }}-key.key
+  delegate_to: server1
+
+- name: Copy certs from 29 machine
+  ansible.posix.synchronize:
+    src: /etc/ipsec.d/certs/{{ item }}-cert.pem
+    dest: /pki/certs/{{ item }}-cert.cert
+  delegate_to: server1
+
 - name: Create nginx dir
   ansible.builtin.file:
     path: ~/nginx-docker

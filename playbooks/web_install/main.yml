@@ -2,4 +2,5 @@
   hosts: server2
   gather_facts: true
   roles:
+    - generate_keys
     - webservices
