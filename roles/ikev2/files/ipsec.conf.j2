@@ -26,9 +26,9 @@ conn IKEv2_CERT_EAP
     leftsendcert=always
     leftsubnet=0.0.0.0/0
     left=%any
-    leftid=@vpn.patchka.vsfi
+    leftid=@{{ vpn_domain }}
 
-    rightdns=192.168.88.29
+    rightdns={{ dns_ip }}
     right=%any
     rightid=%any
     rightauth=eap-mschapv2

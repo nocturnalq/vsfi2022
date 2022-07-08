@@ -20,7 +20,7 @@
     src: ../files/{{ item }}
     dest: /etc/
   loop:
-    - ipsec.conf
+    - ipsec.conf.j2
     - ipsec.secrets
 
 - name: Restart service

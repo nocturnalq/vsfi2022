@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  nginx:
+    build:
+      context: ../nginx/files/
+      dockerfile: Dockerfile
+    container_name: nginx
+    ports:
+      - '80:80'
+    networks:
+      - net1
+
+  web:
+
+  wiki:
+    image: lscr.io/linuxserver/dokuwiki:latest
+    container_name: dokuwiki
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Russia/Samara
+    volumes:
+      - /path/to/appdata/config:/config
+    ports:
+      - '8080:80'
+    restart: unless-stopped
+    networks:
+      - net1
+networks:
+  net1:
