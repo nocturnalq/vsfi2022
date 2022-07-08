@@ -5,6 +5,9 @@ services:
       context: ../nginx-docker/files/
       dockerfile: Dockerfile
     container_name: nginx
+    volumes:
+      - /pki/private/wiki-key.key:/etc/ssl/certs/wiki-key.key:ro
+      - /pki/private/wiki-cert.cert:/etc/ssl/certs/wiki-cert.cert:ro
     ports:
       - '80:80'
 
