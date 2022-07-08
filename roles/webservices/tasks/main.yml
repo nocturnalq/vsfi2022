@@ -1,0 +1,27 @@
+- name: Create nginx dir
+  ansible.builtin.file:
+    path: ~/nginx-docker
+    state: directory
+    mode: '0755'
+
+- name: Copy directory with nginx
+  ansible.builtin.copy:
+    src: ../../nginx/files
+    dest: ~/nginx-docker/
+
+- name: Create webservices dir
+  ansible.builtin.file:
+    path: ~/webservices
+    state: directory
+    mode: '0755'
+
+- name: Copy webservices compose
+  ansible.builtin.copy:
+    src: ../files/docker-compose.yml
+    dest: ~/webservices/
+
+- name: Run docker-compose
+  community.docker.docker_compose:
+    project_src: ~/webservices
+
+

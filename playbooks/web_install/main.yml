@@ -1,0 +1,5 @@
+- name: Install web
+  hosts: server2
+  gather_facts: true
+  roles:
+    - webservices

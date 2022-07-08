@@ -2,7 +2,7 @@ version: "3.9"
 services:
   nginx:
     build:
-      context: ../nginx/files/
+      context: ../nginx-docker/files/
       dockerfile: Dockerfile
     container_name: nginx
     ports:
@@ -12,7 +12,6 @@ services:
 
   wiki:
     image: lscr.io/linuxserver/dokuwiki:latest
-    container_name: dokuwiki
     environment:
       - PUID=1000
       - PGID=1000
@@ -20,7 +19,8 @@ services:
     volumes:
       - /path/to/appdata/config:/config
     ports:
-      - '8080:80'
+      - '8080-8083:80'
+    scale: 4
     restart: unless-stopped
     networks:
       - net1
