@@ -1,0 +1,35 @@
+- name: Install ikev2 packages
+  ansible.builtin.apt:
+    pkg:
+      - strongswan
+      - strongswan-pki
+      - libcharon-extra-plugins
+      - libcharon-extauth-plugins
+      - libstrongswan-extra-plugins
+    update_cache: yes
+
+- name: Copy pki dir
+  ansible.builtin.copy:
+    src: ../files/pki
+    dest: /etc/ipsec/
+
+- name: Copy other config files
+  ansible.builtin.copy:
+    src: ../files/{{ item }}
+    dest: /etc/
+  loop:
+    - ipsec.conf
+    - ipsec.secrets
+
+- name: Restart service
+  ansible.builtin.systemd:
+    state: restarted
+    name: strongswan-starter
+
+- name: Update ufw rules
+  community.general.ufw:
+    rule: allow
+    port: '{{ item }}'
+  loop:
+    - 500
+    - 4500/udp

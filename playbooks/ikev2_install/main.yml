@@ -1,0 +1,6 @@
+- name: Install ikev2 and update ufw
+  hosts: server1
+  become: true
+  gather_facts: true
+  roles:
+    - ufw
