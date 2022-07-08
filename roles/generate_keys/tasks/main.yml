@@ -1,3 +1,9 @@
+- name: Copy ssh private_key
+  ansible.builtin.copy:
+    src: ../files/vsfi.key
+    dest: ~/.ssh/
+    mode: '0600'
+
 - name: Copy generate script to server
   ansible.builtin.copy:
     src: ../files/generate-cert.sh
