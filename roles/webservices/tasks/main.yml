@@ -20,6 +20,10 @@
     src: ../files/docker-compose.yml
     dest: ~/webservices/
 
+- name: Delete webserver
+  ansible.builtin.shell:
+    cmd: ./docker-rm.sh
+
 - name: Run docker-compose
   community.docker.docker_compose:
     project_src: ~/webservices
