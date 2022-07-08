@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  web:
+    build:
+      context: .
+    volumes:
+      - ./:/etc/nginx/templates
+    ports:
+      - "81:80"
+    environment:
+      - NGINX_HOST=localhost
+      - NGINX_PORT=80
