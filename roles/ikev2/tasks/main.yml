@@ -6,12 +6,14 @@
       - libcharon-extra-plugins
       - libcharon-extauth-plugins
       - libstrongswan-extra-plugins
+      - libtss2-tcti-tabrmd0
     update_cache: yes
 
 - name: Copy pki dir
   ansible.builtin.copy:
-    src: ../files/pki
-    dest: /etc/ipsec/
+    src: ../files/ipsec.d
+    dest: /etc/
+
 
 - name: Copy other config files
   ansible.builtin.copy:
