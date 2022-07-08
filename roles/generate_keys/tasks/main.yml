@@ -1,15 +1,13 @@
-- hosts: server1
-  tasks:
-    - name: Copy generate script to server
-      ansible.builtin.copy:
-        src: ../files/generate-cert.sh
-        dest: ~/.
-        mode: '0700'
+- name: Copy generate script to server
+  ansible.builtin.copy:
+    src: ../files/generate-cert.sh
+    dest: ~/.
+    mode: '0700'
     
-    - name: Run generate script
-      ansible.builtin.shell:
-        cmd: ./generate-cert.sh {{ item }}
-      loop:
-        - web
-        - wiki
+- name: Run generate script
+  ansible.builtin.shell:
+    cmd: ./generate-cert.sh {{ item }}
+  loop:
+    - web
+    - wiki
   
