@@ -21,6 +21,8 @@
     - '4500'
     - '80'
     - '443'
+    - '9100'
+    - '9090'
 
 - name: Copyt ikev2 configs
   ansible.builtin.copy:

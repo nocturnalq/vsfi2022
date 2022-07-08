@@ -10,6 +10,10 @@ services:
       - /pki/private/web-key.key:/etc/ssl/certs/web-key.key:ro
       - /pki/certs/wiki-cert.cert:/etc/ssl/certs/wiki-cert.cert:ro
       - /pki/certs/web-cert.cert:/etc/ssl/certs/web-cert.cert:ro
+      - /pki/private/prometheus-key.key:/etc/ssl/certs/prometheus-key.key:ro
+      - /pki/certs/prometheus-cert.cert:/etc/ssl/certs/prometheus-cert.cert:ro
+      - /pki/private/grafana-key.key:/etc/ssl/certs/grafana-key.key:ro
+      - /pki/certs/grafana-cert.cert:/etc/ssl/certs/grafana-cert.cert:ro
       - ../nginx-docker/files/.htpasswd:/etc/nginx/.htpasswd:ro
     ports:
       - '80:80'
@@ -27,3 +31,37 @@ services:
       - '8080-8083:80'
     scale: 4
     restart: unless-stopped
+  
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    restart: unless-stopped
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    ports:
+      - "9100:9100"
+
+  prometheus:
+    image: prom/prometheus:latest
+    restart: unless-stopped
+    volumes:
+      - ../monitoring/prometheus.yml.j2:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    ports:
+      - "9090-9091:9090"
+    scale: 2
+volumes:
+  prometheus_data:

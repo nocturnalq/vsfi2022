@@ -15,4 +15,6 @@ $TTL    604800
 34      IN      PTR     docker-registry.patchka.vsfi.
 34      IN      PTR     web.patchka.vsfi.
 34      IN      PTR     wiki.patchka.vsfi.
+34      IN      PTR     prometheus.patchka.vsfi
+34      IN      PTR     grafana.patchka.vsfi
 
