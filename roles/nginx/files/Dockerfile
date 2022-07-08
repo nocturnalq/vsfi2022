@@ -1,8 +1,8 @@
 FROM nginx:alpine
 
-COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY ./conf.d /etc/nginx/
+COPY ./default.conf /etc/nginx/conf.d/default.conf
+COPY ./includes/ /etc/nginx/includes/
 
-EXPOSE 80
+EXPOSE 80 443
 
-ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
+CMD ["nginx", "-g", "daemon off;"]

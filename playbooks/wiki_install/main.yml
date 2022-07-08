@@ -1,0 +1,5 @@
+- name: Install wiki
+  hosts: server2
+  gather_facts: true
+  roles:
+    - wiki

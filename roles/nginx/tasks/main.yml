@@ -1,27 +1,26 @@
 - name: Create build directory
-  file: 
-    path: /home/{{ ansible_user }}/nginx-docker
+  ansible.builtin.file:
+    path: ~/nginx-docker
     state: directory
-    owner: root
-    group: root
     mode: '0755'
 
-- name: Copy Dockerfile
-  copy:
-    src: ../files/Dockerfile
-    owner: root
-    group: root
-    mode: '0644'
+- name: Copy directory with nginx
+  ansible.builtin.copy:
+    src: ../files
+    dest: ~/nginx-docker/
 
 - name: Build container
   community.docker.docker_image:
     name: vsfi_nginx:v1.0
     build:
-      path: /home/{{ ansible_user }}/nginx-docker
-      source: build
+      path: ~/nginx-docker/files/
+    source: build
     state: present
 
 - name: Run Nginx container
   community.docker.docker_container:
     name: nginx
+    ports:
+      - 80:80
     image: vsfi_nginx:v1.0
+
