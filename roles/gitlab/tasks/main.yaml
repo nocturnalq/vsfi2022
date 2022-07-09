@@ -1,0 +1,23 @@
+- name: Create gitlab dir
+  ansible.builtin.file:
+    path: ~/gitlab_compose
+    state: directory
+    mode: '0755'
+
+- name: Create gitlab dir
+  ansible.builtin.file:
+    path: ~/gitlab_compose/gitlab_volume
+    state: directory
+    mode: '0755'
+
+- name: Copy files
+  ansible.builtin.copy:
+    src: ../files/{{ item }}
+    dest: ~/gitlab_compose
+  loop:
+    - docker-compose.yml
+
+- name: Run docker-compose
+  community.docker.docker_compose:
+    project_src: ~/gitlab
+
