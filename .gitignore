@@ -1,2 +1,3 @@
 .ssh/
 roles/webservices/files/alertmanager/.bot.env
+roles/runner/files/gitlab-runner_amd64.deb

@@ -1,0 +1,16 @@
+concurrent = 1
+check_interval = 0
+
+[session_server]
+  session_timeout = 1800
+
+[[runners]]
+  name = "test 2"
+  url = "http://192.168.88.193:8929/"
+  token = "VkznqyTqywzqYp_fz_Yr"
+  executor = "shell"
+  [runners.custom_build_dir]
+  [runners.cache]
+    [runners.cache.s3]
+    [runners.cache.gcs]
+    [runners.cache.azure]

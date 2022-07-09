@@ -20,12 +20,3 @@
 - name: Run docker-compose
   community.docker.docker_compose:
     project_src: ~/gitlab_compose/
-
-- name: Copy runner on host
-  ansible.builtin.copy:
-    src: ../files/gitlab-runner_amd64.deb
-    dest: ~/
-
-- name: Copy runner on host
-    src: ../files/gitlab-runner_amd64.deb
-    dest: ~/

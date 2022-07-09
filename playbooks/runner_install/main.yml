@@ -1,0 +1,6 @@
+- name: Install runner
+  hosts: server4
+  gather_facts: true
+  become: true
+  roles:
+    - runner

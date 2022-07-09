@@ -1,0 +1,31 @@
+- name: Copy runner on host
+  ansible.builtin.copy:
+    src: ../files/gitlab-runner_amd64.deb
+    dest: ~/
+
+- name: Dpkg install runner 
+  ansible.builtin.shell:
+    cmd: dpkg -i gitlab-runner_amd64.deb
+
+- name: Copy toml file
+  ansible.builtin.copy:
+    src: ../files/config.toml
+    dest: /etc/gitlab-runner/
+    mode: '0600'
+
+- name: Start runner
+  ansible.builtin.shell:
+    cmd: gitlab-runner start
+
+- name: Install cargo
+  become_user: gitlab-runner
+  get_url:
+    url: https://sh.rustup.rs
+    mode: '0755'
+    force: 'yes'
+
+- name: Install build-essentials
+  ansible.builtin.apt:
+    pkg:
+      - build-essential
+    update_cache: yes
