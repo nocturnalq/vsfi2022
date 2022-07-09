@@ -3,12 +3,13 @@ services:
   web:
     image: 'gitlab/gitlab-ce:latest'
     restart: always
-    hostname: 'gitlab.example.com'
+    hostname: 'gitlab.patchka.vsfi'
     environment:
-      GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://gitlab.example.com:8929'
+      GITLAB_OMNIBUS_CONFIG:
+        external_url 'http://192.168.88.193:8929/'
         gitlab_rails['gitlab_shell_ssh_port'] = 2224
         gitlab_rails['initial_root_password'] = 'adminadmin'
+        gitlab_rails['GITLAB_HOST'] = 'http://gitlab.patchka.vsfi'
     ports:
       - '8929:8929'
       - '2224:22'
