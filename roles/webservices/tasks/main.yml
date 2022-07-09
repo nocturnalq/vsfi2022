@@ -26,13 +26,8 @@
     src: ../files/{{ item }}
     dest: ~/monitoring
   loop:
-    - prometheus.yml
-
-# - name: Create grafana dir
-#   ansible.builtin.file:
-#     path: ~/grafana
-#     state: directory
-#     mode: '0755'
+    - prometheus
+    - alertmanager
 
 - name: Copy files to grafana dir
   ansible.builtin.copy:
@@ -45,6 +40,7 @@
   ansible.builtin.copy:
     src: ../files/docker-compose.yml
     dest: ~/webservices/
+
 
 # - name: Delete webserver and grafana
 #   ansible.builtin.shell:
