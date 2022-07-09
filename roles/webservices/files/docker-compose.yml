@@ -14,6 +14,8 @@ services:
       - /pki/certs/prometheus-cert.cert:/etc/ssl/certs/prometheus-cert.cert:ro
       - /pki/private/grafana-key.key:/etc/ssl/certs/grafana-key.key:ro
       - /pki/certs/grafana-cert.cert:/etc/ssl/certs/grafana-cert.cert:ro
+      - /pki/private/gitlab-key.key:/etc/ssl/certs/gitlab-key.key:ro
+      - /pki/certs/gitlab-cert.cert:/etc/ssl/certs/gitlab-cert.cert:ro
       - ../nginx-docker/files/.htpasswd:/etc/nginx/.htpasswd:ro
     ports:
       - '80:80'
@@ -52,13 +54,14 @@ services:
     image: prom/prometheus:latest
     # restart: unless-stopped
     volumes:
-      - ../monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ../monitoring/prometheus:/etc/prometheus/
       - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
       - '--web.console.libraries=/etc/prometheus/console_libraries'
       - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
       - '--web.enable-lifecycle'
     ports:
       - "9090:9090"
@@ -79,6 +82,21 @@ services:
     ports:
       - 3000-3001:3000
     scale: 2
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: alertmanager
+    volumes:
+      - ../monitoring/alertmanager:/etc/alertmanager
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+      - '--storage.path=/alertmanager'
+    restart: unless-stopped
+    env_file:
+      - ../monitoring/alertmanager/.bot.env
+    ports:
+      - 9093:9093
+
 volumes:
   prometheus_data:
   grafana_data:
