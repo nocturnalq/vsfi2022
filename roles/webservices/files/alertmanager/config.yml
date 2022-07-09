@@ -1,0 +1,11 @@
+route:
+    receiver: 'telegram'
+
+receivers:
+  - name: 'telegram'
+    telegram_configs:
+    - bot_token: 'token'
+      chat_id: 'ID'
+      send_resolved: true
+      parse_mode: html
+      api_url: "https://api.telegram.org"
