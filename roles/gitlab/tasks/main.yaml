@@ -13,11 +13,11 @@
 - name: Copy files
   ansible.builtin.copy:
     src: ../files/{{ item }}
-    dest: ~/gitlab_compose
+    dest: ~/gitlab_compose/
   loop:
     - docker-compose.yml
 
 - name: Run docker-compose
   community.docker.docker_compose:
-    project_src: ~/gitlab
+    project_src: ~/gitlab_compose/
 
