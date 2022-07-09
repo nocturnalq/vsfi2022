@@ -1,1 +1,2 @@
 .ssh/
+roles/webservices/files/alertmanager/.bot.env

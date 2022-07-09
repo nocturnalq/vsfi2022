@@ -42,9 +42,9 @@
     dest: ~/webservices/
 
 
-# - name: Delete webserver and grafana
-#   ansible.builtin.shell:
-#     cmd: ./docker-rm.sh
+- name: Delete webserver and grafana
+  ansible.builtin.shell:
+    cmd: ./docker-rm.sh
 
 - name: Run docker-compose
   community.docker.docker_compose:

@@ -14,6 +14,8 @@ services:
       - /pki/certs/prometheus-cert.cert:/etc/ssl/certs/prometheus-cert.cert:ro
       - /pki/private/grafana-key.key:/etc/ssl/certs/grafana-key.key:ro
       - /pki/certs/grafana-cert.cert:/etc/ssl/certs/grafana-cert.cert:ro
+      - /pki/private/gitlab-key.key:/etc/ssl/certs/gitlab-key.key:ro
+      - /pki/certs/gitlab-cert.cert:/etc/ssl/certs/gitlab-cert.cert:ro
       - ../nginx-docker/files/.htpasswd:/etc/nginx/.htpasswd:ro
     ports:
       - '80:80'
@@ -82,7 +84,7 @@ services:
     scale: 2
 
   alertmanager:
-    image: prom/alertmanager:v0.20.0
+    image: prom/alertmanager:latest
     container_name: alertmanager
     volumes:
       - ../monitoring/alertmanager:/etc/alertmanager
@@ -90,6 +92,8 @@ services:
       - '--config.file=/etc/alertmanager/config.yml'
       - '--storage.path=/alertmanager'
     restart: unless-stopped
+    env_file:
+      - .bot.env
     ports:
       - 9093:9093
 

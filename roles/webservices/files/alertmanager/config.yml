@@ -1,11 +1,13 @@
 route:
-    receiver: 'telegram'
+  receiver: 'bogdan'
 
 receivers:
-  - name: 'telegram'
+  - name: 'bogdan'
     telegram_configs:
-    - bot_token: 'token'
-      chat_id: 'ID'
-      send_resolved: true
-      parse_mode: html
-      api_url: "https://api.telegram.org"
+    - send_resolved: true
+      api_url: https://api.telegram.org
+      bot_token: ${TOKEN}
+      chat_id: ${CHAT_ID}
+      parse_mode: HTML
+
+

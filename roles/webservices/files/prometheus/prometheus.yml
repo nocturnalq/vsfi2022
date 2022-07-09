@@ -3,13 +3,13 @@ global:
   evaluation_interval: 10s
 
 rule_files:
-  - rules.yml
+  - "alert.rules"
 
 alerting:
   alertmanagers:
-    - static_configs:
+    - scheme: http
+      static_configs:
       - targets:
-        # Alertmanager's default port is 9093
         - server2.patchka.vsfi:9093
 
 scrape_configs:
