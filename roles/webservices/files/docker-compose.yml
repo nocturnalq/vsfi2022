@@ -93,7 +93,7 @@ services:
       - '--storage.path=/alertmanager'
     restart: unless-stopped
     env_file:
-      - .bot.env
+      - ../monitoring/alertmanager/.bot.env
     ports:
       - 9093:9093
 
