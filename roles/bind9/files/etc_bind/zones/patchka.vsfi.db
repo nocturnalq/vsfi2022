@@ -22,3 +22,5 @@ prometheus.patchka.vsfi.      IN   A    192.168.88.34
 grafana.patchka.vsfi.         IN   A    192.168.88.34
 server2.patchka.vsfi.         IN   A    192.168.88.34
 server1.patchka.vsfi.         IN   A    192.168.88.29
+gitlab.patchka.vsfi.          IN   A    192.168.88.34
+

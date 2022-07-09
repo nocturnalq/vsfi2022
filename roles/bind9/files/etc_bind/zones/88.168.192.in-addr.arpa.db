@@ -19,4 +19,6 @@ $TTL    604800
 34      IN      PTR     prometheus.patchka.vsfi.
 34      IN      PTR     grafana.patchka.vsfi.
 34      IN      PTR     server2.patchka.vsfi.
+34      IN      PTR     gitlab.patchka.vsfi.
+
 
