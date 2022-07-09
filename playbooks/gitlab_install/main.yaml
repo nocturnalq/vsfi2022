@@ -1,5 +1,5 @@
 - name: Install gitlab on server
-  hosts: gitlab
+  hosts: server3
   become: true
   gather_facts: true
   roles:
