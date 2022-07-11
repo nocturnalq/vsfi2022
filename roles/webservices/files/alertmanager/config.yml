@@ -6,8 +6,8 @@ receivers:
     telegram_configs:
     - send_resolved: true
       api_url: https://api.telegram.org
-      bot_token: 5544973071:AAFhSNcIkUeBunlrs8wONftONtBEfWrrwTo
-      chat_id: 170683344
+      bot_token: ${BOT_TOKEN}
+      chat_id: ${CHAT_ID}
       parse_mode: HTML
 
 
